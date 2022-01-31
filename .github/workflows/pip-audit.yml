@@ -1,0 +1,22 @@
+name: Pip-audit
+on: 
+  pull_request:
+    branches:
+      - develop
+      - main
+jobs:
+  pip-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+
+      - name: Install pip-audit
+        run: pip install pip-audit
+        
+      - name: Install requirements
+        run: pip install -r requirements.txt
+        
+      - name: Run pip-audit
+        run: pip-audit
